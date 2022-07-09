@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-native';
+import { Icon } from '@rneui/themed';
 
 const Header = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const Header = () => {
     <View style={styles.container}>
       {location.pathname !== '/' && (
         <TouchableOpacity onPress={handleBack} style={styles.back}>
-          <Text> z </Text>
+          <Icon name="camera" />
         </TouchableOpacity>
       )}
       <Text style={styles.text}>Rick & Morty</Text>

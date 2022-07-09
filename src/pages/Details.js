@@ -3,17 +3,19 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { useParams } from 'react-router-native';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getCharacter } from '../data/slice/characterSlice';
+
 const Details = () => {
+  const dispatch = useDispatch();
+
+  const character = useSelector((state) => state.character.selected);
+
   const { characterId } = useParams();
 
-  const [character, setCharacter] = useState();
-
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
-      .then((response) => response.json())
-      .then((data) => setCharacter(data))
-      .catch((error) => console.log('error', error));
-  }, [character]);
+    dispatch(getCharacter(characterId));
+  }, [characterId]);
 
   return (
     <View>
